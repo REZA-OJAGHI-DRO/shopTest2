@@ -53,5 +53,4 @@ createRoot(document.getElementById('root')).render(
     </StrictMode>,
 );
 
-// ثبت Service Worker
-serviceWorker.register();
+
