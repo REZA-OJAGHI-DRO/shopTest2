@@ -70,11 +70,11 @@ export async function postGoodList({
 
 };
 
-export async function postGoodDelete(edit, token, chabk, setMessageData) {
+export async function postGoodDelete(dataDelete, token, chabk, setMessage) {
     const url = `https://${chabk}/Product/Good/Delete`;
 
     const data = {
-        goodCodeId: edit.goodCodeId,
+        goodCodeId: dataDelete.goodCodeId,
     };
 
     try {
@@ -96,7 +96,7 @@ export async function postGoodDelete(edit, token, chabk, setMessageData) {
         //    ...
         } else {
            
-            setMessageData(
+            setMessage(
                 result.errors ? result.errors : result.message
             );
         }
@@ -105,11 +105,11 @@ export async function postGoodDelete(edit, token, chabk, setMessageData) {
     } catch (error) {
 
         if (error instanceof TypeError && error.message === "Failed to fetch") {
-            setMessageData( 
+            setMessage( 
                 'مشکلی در سرور به وجود آمده است. لطفاً بعداً دوباره تلاش کنید.'
             );
         } else if (!navigator.onLine) {
-            setMessageData(
+            setMessage(
                 "مشکلی در ارتباط با سرور وجود دارد. لطفاً اتصال اینترنت خود را بررسی کنید."
             );
         } else {
@@ -126,7 +126,7 @@ export async function postGoodDelete(edit, token, chabk, setMessageData) {
             };
             
             const message = errorMessages[Number(error.message)] || 'خطای ناشناخته‌ای رخ داده است.';
-            setMessageData( message);
+            setMessage( message);
         }
     }
 }
